@@ -1,0 +1,261 @@
+[
+    {
+        "_id": 1,
+        "name": "Stark",
+        "sigil": "A grey direwolf on a white field",
+        "words": "Winter Is Coming",
+        "seat": "Winterfell",
+        "region": "The North",
+        "vassals": [
+            "Glover",
+            "Hornwood",
+            "Mazin",
+            "Mormont",
+            "Reed",
+            "Tallhart",
+            "Cerwyn",
+            "Dustin",
+            "Ryswell",
+            "Manderly",
+            "Umber",
+            "Dormund",
+            "Seaworth",
+            "Karstark",
+            "Bolton"
+        ],
+        "founder": "Bran the Builder"
+    },
+    {
+        "_id": 2,
+        "name": "Lannister",
+        "sigil": "A golden lion rampant on a crimson field",
+        "words": "Hear Me Roar",
+        "seat": "Casterly Rock",
+        "region": "The Westerlands",
+        "vassals": [
+            "Clegane",
+            "Swyft",
+            "Crakehall",
+            "Lefford",
+            "Marbrand",
+            "Payne",
+            "Westerling",
+            "Reyne",
+            "Tarbeck",
+            "Hetherspoon",
+            "Yarwyck",
+            "Lorch",
+            "Greenfield"
+        ],
+        "founder": "Lann the Clever"
+    },
+    {
+        "_id": 3,
+        "name": "Targaryen",
+        "sigil": "A red three-headed dragon on a black field",
+        "words": "Fire and Blood",
+        "seat": "King's Landing",
+        "region": "The Crownlands",
+        "vassals": [
+            "Lannister",
+            "Stark",
+            "Baratheon",
+            "Greyjoy",
+            "Martell",
+            "Tully",
+            "Tyrell",
+            "Arryn"
+        ],
+        "founder": "Aegon The Conqueror"
+    },
+    {
+        "_id": 4,
+        "name": "Baratheon",
+        "sigil": "A crowned black stag rampant on a gold field",
+        "words": "Ours is the Fury",
+        "seat": "Storm's End",
+        "region": "The Stormlands",
+        "vassals": [
+            "Caron",
+            "Dondarrion",
+            "Selmy",
+            "Swann",
+            "Tarth",
+            "Trant",
+            "Errol",
+            "Estermont",
+            "Musgood",
+            "Grandison",
+            "Peasebury",
+            "Connington",
+            "Wylde",
+            "Morrigen"
+        ],
+        "founder": "Orys Baratheon"
+    },
+    {
+        "_id": 5,
+        "name": "Tyrell",
+        "sigil": "A golden rose on a green field",
+        "words": "Growing Strong",
+        "seat": "Highgarden",
+        "region": "The Reach",
+        "vassals": [
+            "Tarly",
+            "Hightower",
+            "Florent",
+            "Merryweather",
+            "Fossoway",
+            "Rowan",
+            "Redwyne",
+            "Oakheart"
+        ],
+        "founder": "Alester Tyrell"
+    },
+    {
+        "_id": 6,
+        "name": "Greyjoy",
+        "sigil": "A golden kraken on a black field",
+        "words": "We Do Not Sow",
+        "seat": "Pyke",
+        "region": "The Iron Islands",
+        "vassals": [
+            "Blacktyde",
+            "Botley",
+            "Drumm",
+            "Goodbrother",
+            "Harlaw",
+            "Merlyn",
+            "Sparr",
+            "Humble"
+        ],
+        "founder": "The Grey King"
+    },
+    {
+        "_id": 7,
+        "name": "Tully",
+        "sigil": "A silver trout leaping on a red and blue background",
+        "words": "Family, Duty, Honor",
+        "seat": "Riverrun",
+        "region": "The Riverlands",
+        "vassals": [
+            "Frey",
+            "Bracken",
+            "Mallister",
+            "Whent",
+            "Blackwood",
+            "Mooton",
+            "Smallwood",
+            "Darry"
+        ],
+        "founder": "Axel Tully"
+    },
+    {
+        "_id": 8,
+        "name": "Martell",
+        "sigil": "A red sun pierced by a gold spear, on an orange field",
+        "words": "Unbowed, Unbent, Unbroken",
+        "seat": "Sunspear",
+        "region": "Dorne",
+        "vassals": [
+            "Allyrion",
+            "Blackmont",
+            "Dalt",
+            "Dayne",
+            "Gargalen",
+            "Jordayne",
+            "Qorgyle",
+            "Manwoody",
+            "Santagar",
+            "Uller",
+            "Yronwood"
+        ],
+        "founder": "Mors Martell"
+    },
+    {
+        "_id": 9,
+        "name": "Arryn",
+        "sigil": "A white falcon volant and crescent moon on a blue field",
+        "words": "As High as Honor",
+        "seat": "The Eyrie",
+        "region": "The Vale of Arryn",
+        "vassals": [
+            "Royce",
+            "Egen",
+            "Waynwood",
+            "Corbray",
+            "Hunter",
+            "Lynderly",
+            "Templeton",
+            "Baelish"
+        ],
+        "founder": "Artys Arryn"
+    },
+    {
+        "_id": 10,
+        "name": "Bolton",
+        "sigil": "A red flayed man, hanging upside-down on a white X-shaped cross, on a black background",
+        "words": "Our Blades Are Sharp",
+        "seat": "The Dreadfort",
+        "region": "The North",
+        "vassals": [],
+        "founder": ""
+    },
+    {
+        "_id": 11,
+        "name": "Frey",
+        "sigil": "The two stone grey towers and bridge of the Twins, on a dark grey field, surmounting an escutcheon of blue water",
+        "words": "We Stand Together",
+        "seat": "The Twins",
+        "region": "The Riverlands",
+        "vassals": [
+            "Erenford",
+            "Haigh"
+        ],
+        "founder": ""
+    },
+    {
+        "_id": 12,
+        "name": "Redwyne",
+        "sigil": "A burgundy grape cluster on a white field",
+        "words": "Ripe for Victory",
+        "seat": "The Arbor",
+        "region": "The Reach",
+        "vassals": [],
+        "founder": ""
+    },
+    {
+        "_id": 13,
+        "name": "Hightower",
+        "sigil": "A stone white watchtower, with a fire on the top, on a grey field",
+        "words": "We Light the Way",
+        "seat": "The Hightower",
+        "region": "The Reach",
+        "vassals": [
+            "Cuy",
+            "Bulwer",
+            "Beesbury"
+        ],
+        "founder": ""
+    },
+    {
+        "_id": 14,
+        "name": "Karstark",
+        "sigil": "A white sunburst on black",
+        "words": "The Sun of Winter",
+        "seat": "Karhold",
+        "region": "The North",
+        "vassals": [],
+        "founder": "Karlon Stark"
+    },
+    {
+        "_id": 15,
+        "name": "Mormont",
+        "sigil": "A rampant black bear on a white field, surrounded by a green escutcheon",
+        "words": "Here We Stand",
+        "seat": "Bear Island",
+        "region": "The North",
+        "vassals": [],
+        "founder": ""
+    }
+]
