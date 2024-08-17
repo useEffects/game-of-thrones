@@ -42,7 +42,6 @@ export const initialNodes: DataNode[] = [
     data: {
         ...node,
         height: 41 * 2,
-        id: node.id,
         width: 152 * 1.3,
     },
 }));

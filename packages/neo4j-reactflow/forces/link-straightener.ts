@@ -1,5 +1,5 @@
 import { Force } from 'd3-force';
-import { Edge } from '@xyflow/react';
+import { Edge } from 'reactflow';
 import { DataLinkData, DataNodeData } from '../types';
 
 // @ts-ignore

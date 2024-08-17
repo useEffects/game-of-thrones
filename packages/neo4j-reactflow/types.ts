@@ -1,5 +1,5 @@
 import { SimulationLinkDatum, SimulationNodeDatum } from 'd3-force';
-import { Edge, Node } from '@xyflow/react';
+import { Edge, Node } from 'reactflow';
 
 export type DataNodeData = {
     id: string;

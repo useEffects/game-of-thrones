@@ -1,17 +1,53 @@
-import '@fontsource/roboto/300.css';
-import '@fontsource/roboto/400.css';
-import '@fontsource/roboto/500.css';
-import '@fontsource/roboto/700.css';
-import { Box } from '@mui/material';
-import ThemeToggle from 'src/components/theme-toggle';
+import 'src/components/css-imports';
+import { Box, Container } from '@mui/material';
 import Providers from 'src/components/providers';
+import Visualizer from 'src/components/visualizer';
+import ChatView from './components/chat';
+import useUser from './hooks/user';
+import LockedScreen from './components/locked-screen';
+import Page from './trash/page';
 
 function App() {
   return <Providers>
-    <Box>
-      <ThemeToggle />
-    </Box>
+    <RenderLayout />
   </Providers>
+}
+
+function MainLayout() {
+  return <Box sx={{
+    display: "flex",
+    placeContent: "center",
+  }}>
+    <Container
+      maxWidth="xl"
+      sx={{
+        display: "flex",
+        gap: 4,
+        height: "100dvh",
+        padding: 4
+      }}
+    >
+      <Visualizer sx={{
+        height: "100%",
+        width: "50%"
+      }} />
+      <ChatView
+        sx={{
+          height: "100%",
+          width: "50%"
+        }}
+      />
+    </Container>
+  </Box>
+}
+
+function LockedLayout() {
+  return <LockedScreen />
+}
+
+function RenderLayout() {
+  const { user } = useUser()
+  return user.name && user.openAIKey ? <Page /> : <LockedLayout />
 }
 
 export default App

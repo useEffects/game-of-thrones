@@ -4,12 +4,12 @@ export const ColorModeContext = createContext<{
     colorMode: ColorMode;
     setColorMode: Dispatch<SetStateAction<ColorMode>>;
 }>({
-    colorMode: 'dark',
+    colorMode: 'auto',
     setColorMode: () => { }
 })
 
 export const ColorModeProvider = ({ children }: { children: ReactNode }) => {
-    const [colorMode, setColorMode] = useState<ColorMode>("auto");
+    const [colorMode, setColorMode] = useState<ColorMode>("light");
 
     return <ColorModeContext.Provider value={{ colorMode, setColorMode }}>
         {children}

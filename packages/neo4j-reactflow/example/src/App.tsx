@@ -1,14 +1,19 @@
-import { Panel, ReactFlow, ReactFlowProvider, useEdgesState, useNodesState } from "@xyflow/react";
-import { useState } from "react";
+import { Panel, ReactFlow, ReactFlowProvider, useEdgesState, useNodesState } from "reactflow";
+import { useEffect, useState } from "react";
 import { initialEdges, initialNodes } from "./data";
 import { useLayoutedElements } from "neo4j-reactflow";
-import '@xyflow/react/dist/style.css';
+import 'reactflow/dist/style.css';
 
 const LayoutFlow = () => {
-  const [running, setRunning] = useState(false);
   const [nodes, , onNodesChange] = useNodesState(initialNodes);
   const [edges, , onEdgesChange] = useEdgesState(initialEdges);
-  const [initialised, { toggle }] = useLayoutedElements();
+  const [initialized, { toggle, isRunning }] = useLayoutedElements();
+
+  useEffect(() => {
+    if (initialized && !isRunning()) {
+      toggle();
+    }
+  }, [initialized]);
 
   return (
     <div className="flex h-screen w-screen place-content-center">
@@ -19,13 +24,6 @@ const LayoutFlow = () => {
           onEdgesChange={onEdgesChange}
           onNodesChange={onNodesChange}
         >
-          <Panel position="top-left">
-            {initialised && (
-              <button onClick={() => setRunning(toggle())}>
-                {running ? 'Stop' : 'Start'} force simulation
-              </button>
-            )}
-          </Panel>
         </ReactFlow>
       </div>
     </div>
