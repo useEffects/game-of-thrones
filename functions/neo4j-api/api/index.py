@@ -64,14 +64,6 @@ class handler(BaseHTTPRequestHandler):
         self.wfile.write(json.dumps({"response": response}).encode("utf-8"))
 
     def add_cors_headers(self):
-        allowed_origins = [
-            "localhost:3000",
-            "localhost:3001",
-            "localhost:5173",
-            "got.joelsamuel.me",
-        ]
-        origin = self.headers.get("Origin")
-        if origin in allowed_origins:
-            self.send_header("Access-Control-Allow-Origin", origin)
-            self.send_header("Access-Control-Allow-Methods", "GET, POST, OPTIONS")
-            self.send_header("Access-Control-Allow-Headers", "Content-Type")
+        self.send_header("Access-Control-Allow-Origin", "*")
+        self.send_header("Access-Control-Allow-Methods", "GET, POST, OPTIONS")
+        self.send_header("Access-Control-Allow-Headers", "Content-Type")
