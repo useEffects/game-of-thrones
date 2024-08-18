@@ -10,7 +10,7 @@
     "typescript": "^5.5.4"
   },
   "dependencies": {
-    "reactflow": "^12.1.0",
+    "reactflow": "^11.11.4",
     "d3-force": "^3.0.0",
     "react": "^18.3.1"
   }
