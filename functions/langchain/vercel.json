@@ -4,8 +4,5 @@
             "source": "/",
             "destination": "/api"
         }
-    ],
-    "env": {
-        "PYTHONPATH": "api/"
-    }
+    ]
 }
