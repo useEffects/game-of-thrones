@@ -33,7 +33,7 @@ function Flow({ strength = -1000, distance = 150, query = "" }: FlowProps = {}) 
         async (_, node) => {
             // use pagination
             const query = `MATCH (n)-[r]-(m) WHERE ID(n) = ${node.id} RETURN n, r, m`;
-            setNodesAndEdges(setNodes, setEdges, query);
+            setNodesAndEdges(setNodes, setEdges, query, true);
         },
         [nodes.length, setNodes, setEdges]
     );
@@ -77,7 +77,7 @@ type Neo4jRelationship = {
     end_node: string;
 }
 
-const setNodesAndEdges = (nodesDispatcher: Dispatch<SetStateAction<Node[]>>, edgesDispatcher: Dispatch<SetStateAction<Edge[]>>, query: string) => {
+const setNodesAndEdges = (nodesDispatcher: Dispatch<SetStateAction<Node[]>>, edgesDispatcher: Dispatch<SetStateAction<Edge[]>>, query: string, shouldAppend?: boolean) => {
     fetch(`${neo4jApi}/api`, {
         method: 'POST',
         body: JSON.stringify({ query }),
@@ -118,8 +118,14 @@ const setNodesAndEdges = (nodesDispatcher: Dispatch<SetStateAction<Node[]>>, edg
                 type: "straight",
             }
         });
-        nodesDispatcher(prev => uniqBy([...prev, ...nodes], 'id'));
-        edgesDispatcher(prev => uniqBy([...prev, ...edges], 'id'));
+        if (shouldAppend) {
+            nodesDispatcher(prev => uniqBy([...prev, ...nodes], 'id'));
+            edgesDispatcher(prev => uniqBy([...prev, ...edges], 'id'));
+        }
+        else {
+            nodesDispatcher(nodes);
+            edgesDispatcher(edges);
+        }
     });
 }
 

@@ -11,7 +11,6 @@ export default function Visualizer({ sx = {} }: { sx?: SxProps }) {
     const { user: { messages } } = useUser();
 
     const lastBotMessage = messages.sort(sortMessagesReverse).find(message => message.senderType === SenderType.Bot && message.executedCypher) as IBotMessage;
-    console.log(lastBotMessage)
 
     return <Box sx={sx}>
         <Tabs

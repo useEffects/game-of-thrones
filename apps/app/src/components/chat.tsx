@@ -1,16 +1,17 @@
 import SendIcon from '@mui/icons-material/Send';
 import { IconButton, SxProps, TextField, Typography, useTheme } from "@mui/material";
 import { Box } from "@mui/system";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import useUser from "src/hooks/user";
 import { langchainServer } from "src/lib/constants";
-import { sortMessages } from "src/lib/helpers";
 import MessageBubble, { SenderType } from "./message-bubble";
+import { sortMessages } from 'src/lib/helpers';
 
 export default function ChatView({ sx = {} }: { sx?: SxProps }) {
     const { user, setUser } = useUser()
     const [text, setText] = useState("");
     const { palette } = useTheme()
+    const ref = useRef<HTMLDivElement>(null)
 
     const handleSubmit = async () => {
         if (!text) return;
@@ -52,6 +53,9 @@ export default function ChatView({ sx = {} }: { sx?: SxProps }) {
         })
 
         setText("")
+        if (ref.current) {
+            ref.current.scrollTop = ref.current.scrollHeight
+        }
     }
 
     return <Box sx={{
@@ -62,13 +66,13 @@ export default function ChatView({ sx = {} }: { sx?: SxProps }) {
         justifyContent: "flex-end",
         ...sx
     }}>
-        <Box sx={{
+        <Box ref={ref} sx={{
             display: "flex",
             flexDirection: "column",
             gap: 1,
             overflowY: "auto",
         }}>
-            {user.messages.map(message => <MessageBubble key={message._id} {...message} />)}
+            {user.messages.sort(sortMessages).map(message => <MessageBubble key={message._id} {...message} />)}
         </Box>
         <TextField
             InputProps={{
