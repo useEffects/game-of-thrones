@@ -22,7 +22,7 @@ graph = Neo4jGraph(
 
 def get_chain(api_key):
     ollama_model = ChatOllama(temperature=0, model="llama3.1")
-    openai_model = ChatOpenAI(temperature=0, model="gpt-4o", api_key=api_key)
+    openai_model = ChatOpenAI(temperature=0, model="gpt-3.5-turbo", api_key=api_key)
     model = (
         openai_model
         if (NODE_ENV == "production" or VERCEL_ENV == "production")

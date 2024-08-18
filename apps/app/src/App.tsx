@@ -46,6 +46,7 @@ function LockedLayout() {
 
 function RenderLayout() {
   const { user } = useUser()
+  console.log(user)
   return user.name && user.openAIKey ? <MainLayout /> : <LockedLayout />
 }
 
