@@ -4,6 +4,18 @@ from lib import fetch_response
 
 
 class handler(BaseHTTPRequestHandler):
+    def do_OPTIONS(self):
+        self.send_response(200)
+        self.add_cors_headers()
+        self.end_headers()
+
+    def do_GET(self):
+        self.send_response(200)
+        self.send_header("Content-type", "application/json")
+        self.add_cors_headers()
+        self.end_headers()
+        self.wfile.write(json.dumps({"message": "Hello, world!"}).encode("utf-8"))
+
     def do_POST(self):
         content_length = int(self.headers["Content-Length"])
         post_data = self.rfile.read(content_length)
@@ -15,11 +27,6 @@ class handler(BaseHTTPRequestHandler):
         self.add_cors_headers()
         self.end_headers()
         self.wfile.write(json.dumps({"response": response}).encode("utf-8"))
-    
-    def do_OPTIONS(self):
-        self.send_response(200)
-        self.add_cors_headers()
-        self.end_headers()
 
     def add_cors_headers(self):
         allowed_origins = [
