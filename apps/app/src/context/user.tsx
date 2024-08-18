@@ -6,7 +6,7 @@ export const UserContext = createContext<{
     user: User,
     setUser: Dispatch<SetStateAction<User>>,
 }>({
-    user: { name: '', openAIKey: '', messages: [] },
+    user: { name: '', messages: [] },
     setUser: () => { },
 })
 
@@ -14,7 +14,6 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
     const [user, setUser] = useLocalStorageState<User>('user', {
         defaultValue: {
             name: 'Guest User',
-            openAIKey: import.meta.env.VITE_API_KEY!,
             messages: [],
         }
     })
@@ -26,6 +25,5 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
 
 export type User = {
     name: string,
-    openAIKey: string,
     messages: IMessage[],
 }

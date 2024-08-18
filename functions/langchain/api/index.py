@@ -13,6 +13,8 @@ NEO4J_PASSWORD = os.environ.get("NEO4J_PASSWORD")
 NODE_ENV = os.environ.get("NODE_ENV")
 VERCEL_ENV = os.environ.get("VERCEL_ENV")
 
+API_KEY = os.environ.get("API_KEY")
+
 graph = Neo4jGraph(
     url=NEO4J_URI,
     username=NEO4J_USERNAME,
@@ -20,9 +22,9 @@ graph = Neo4jGraph(
 )
 
 
-def get_chain(api_key):
+def get_chain():
     ollama_model = ChatOllama(temperature=0, model="llama3.1")
-    openai_model = ChatOpenAI(temperature=0, model="gpt-3.5-turbo", api_key=api_key)
+    openai_model = ChatOpenAI(temperature=0, model="gpt-3.5-turbo", api_key=API_KEY)
     model = (
         openai_model
         if (NODE_ENV == "production" or VERCEL_ENV == "production")

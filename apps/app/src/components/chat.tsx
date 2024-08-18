@@ -19,7 +19,6 @@ export default function ChatView({ sx = {} }: { sx?: SxProps }) {
             method: "POST",
             body: JSON.stringify({
                 input: text,
-                api_key: user.openAIKey
             })
         }).then(res => res.json())
 
