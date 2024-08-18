@@ -5,7 +5,6 @@ import Visualizer from 'src/components/visualizer';
 import ChatView from './components/chat';
 import useUser from './hooks/user';
 import LockedScreen from './components/locked-screen';
-import Page from './trash/page';
 
 function App() {
   return <Providers>
@@ -47,7 +46,7 @@ function LockedLayout() {
 
 function RenderLayout() {
   const { user } = useUser()
-  return user.name && user.openAIKey ? <Page /> : <LockedLayout />
+  return user.name && user.openAIKey ? <MainLayout /> : <LockedLayout />
 }
 
 export default App

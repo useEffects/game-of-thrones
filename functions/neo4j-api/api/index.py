@@ -1,43 +1,35 @@
+from http.server import BaseHTTPRequestHandler
 import json
-import os
-from neo4j import GraphDatabase, Result
+from lib import fetch_response
 
-NEO4J_URI = os.environ.get("NEO4J_URI")
-NEO4J_USERNAME = os.environ.get("NEO4J_USERNAME")
-NEO4J_PASSWORD = os.environ.get("NEO4J_PASSWORD")
 
-with GraphDatabase.driver(NEO4J_URI, auth=(NEO4J_USERNAME, NEO4J_PASSWORD)) as driver:
-    driver.verify_connectivity()
-    query_result = driver.execute_query(
-        "match (n) return n",
-        database_="neo4j",
-        result_transformer_=Result.graph,
-    )
-    nodes = []
-    relationships = []
-    for node in query_result._nodes.items():
-        nodes.append(
-            {
-                "id": node[1].id,
-                "labels": list(node[1].labels),
-                "properties": {key: value for key, value in node[1].items()},
-            }
-        )
-    for relationship in query_result._relationships.items():
-        relationships.append(
-            {
-                "id": relationship[1].id,
-                "type": relationship[1].type,
-                "start_node": relationship[1].start_node,
-                "end_node": relationship[1].end_node,
-                "properties": {key: value for key, value in relationship[1].items()},
-            }
-        )
-    response = {
-        "results": [
-            {
-                "columns": [],
-                
-            }
+class handler(BaseHTTPRequestHandler):
+    def do_POST(self):
+        content_length = int(self.headers["Content-Length"])
+        post_data = self.rfile.read(content_length)
+        json_data = json.loads(post_data.decode("utf-8"))
+        query = json_data.get("query")
+        response = fetch_response(query)
+        self.send_response(200)
+        self.send_header("Content-type", "application/json")
+        self.add_cors_headers()
+        self.end_headers()
+        self.wfile.write(json.dumps({"response": response}).encode("utf-8"))
+    
+    def do_OPTIONS(self):
+        self.send_response(200)
+        self.add_cors_headers()
+        self.end_headers()
+
+    def add_cors_headers(self):
+        allowed_origins = [
+            "http://localhost:3000",
+            "http://localhost:3001",
+            "http://localhost:5173",
+            "https://got.joelsamuel.me",
         ]
-    }
+        origin = self.headers.get("Origin")
+        if origin in allowed_origins:
+            self.send_header("Access-Control-Allow-Origin", origin)
+            self.send_header("Access-Control-Allow-Methods", "GET, POST, OPTIONS")
+            self.send_header("Access-Control-Allow-Headers", "Content-Type")
