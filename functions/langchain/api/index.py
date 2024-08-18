@@ -65,10 +65,10 @@ class handler(BaseHTTPRequestHandler):
 
     def add_cors_headers(self):
         allowed_origins = [
-            "http://localhost:3000",
-            "http://localhost:3001",
-            "http://localhost:5173",
-            "https://got.joelsamuel.me",
+            "localhost:3000",
+            "localhost:3001",
+            "localhost:5173",
+            "got.joelsamuel.me",
         ]
         origin = self.headers.get("Origin")
         if origin in allowed_origins:
