@@ -58,8 +58,8 @@ class handler(BaseHTTPRequestHandler):
         chain = get_chain(api_key)
         response = chain.invoke(input)
         self.send_response(200)
-        self.add_cors_headers()
         self.send_header("Content-type", "application/json")
+        self.add_cors_headers()
         self.end_headers()
         self.wfile.write(json.dumps({"response": response}).encode("utf-8"))
 
