@@ -1,21 +1,20 @@
 import { Box, SxProps, Tab, Tabs, Typography } from "@mui/material";
+import dagre from 'dagre';
 import { useEffect, useState } from "react";
-import useUser from "src/hooks/user";
-import * as yup from 'yup';
-import { IBotMessage, SenderType } from "./message-bubble";
 import Highlight from "react-highlight";
 import { Node } from 'reactflow';
-import dagre from 'dagre';
-import { SortMessagesReverse } from "src/lib/helpers";
+import useUser from "src/hooks/user";
+import { sortMessagesReverse } from "src/lib/helpers";
+import * as yup from 'yup';
 import Flow from "./flow";
+import { IBotMessage, SenderType } from "./message-bubble";
 
 export default function Visualizer({ sx = {} }: { sx?: SxProps }) {
     const [tab, setTab] = useState(0);
     const { user: { messages } } = useUser();
 
-    const lastBotMessage = messages.sort(SortMessagesReverse).find(message => message.senderType === SenderType.Bot && message.executedCypher) as IBotMessage;
-
-    console.log({lastBotMessage})
+    const lastBotMessage = messages.sort(sortMessagesReverse).find(message => message.senderType === SenderType.Bot && message.executedCypher) as IBotMessage;
+    console.log(lastBotMessage)
 
     return <Box sx={sx}>
         <Tabs
@@ -43,12 +42,16 @@ function RenderNodesDiagram(props: { query?: string }) {
 
 function RenderJsonResult(props: { cypherResult?: string }) {
     const { cypherResult } = props;
-    const [parsedResult] = useCypherResult(cypherResult);
+    // const [parsedResult] = useCypherResult(cypherResult);
 
-    return <Box>
+    return <Box sx={{
+        overflowY: "auto",
+        height: "100%",
+        width: "100%",
+    }}>
         <Typography variant="body1" component={"div"}>
             <Highlight className="json">
-                {JSON.stringify(parsedResult, null, 2)}
+                {JSON.stringify(cypherResult, null, 2)}
             </Highlight>
         </Typography>
     </Box>

@@ -1,6 +1,6 @@
 from http.server import BaseHTTPRequestHandler
 import json
-from chain import chain
+from chain import get_chain
 
 class handler(BaseHTTPRequestHandler):
     def do_POST(self):
@@ -8,6 +8,8 @@ class handler(BaseHTTPRequestHandler):
         post_data = self.rfile.read(content_length)
         json_data = json.loads(post_data.decode("utf-8"))
         input = json_data.get("input")
+        api_key = json_data.get("api_key")
+        chain = get_chain(api_key)
         response = chain.invoke(input)
         self.send_response(200)
         self.send_header("Content-type", "application/json")

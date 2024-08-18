@@ -1,11 +1,11 @@
+import SendIcon from '@mui/icons-material/Send';
 import { IconButton, SxProps, TextField, Typography, useTheme } from "@mui/material";
 import { Box } from "@mui/system";
-import SendIcon from '@mui/icons-material/Send';
 import { useState } from "react";
-import MessageBubble, { SenderType } from "./message-bubble";
 import useUser from "src/hooks/user";
 import { langchainServer } from "src/lib/constants";
-import { SortMessagesReverse as sortMessagesReverse } from "src/lib/helpers";
+import { sortMessages } from "src/lib/helpers";
+import MessageBubble, { SenderType } from "./message-bubble";
 
 export default function ChatView({ sx = {} }: { sx?: SxProps }) {
     const { user, setUser } = useUser()
@@ -17,14 +17,17 @@ export default function ChatView({ sx = {} }: { sx?: SxProps }) {
         const res = await fetch(`${langchainServer}`, {
             method: "POST",
             body: JSON.stringify({
-                input: text
+                input: text,
+                api_key: user.openAIKey
             })
         }).then(res => res.json())
 
         const intermediate_steps = res.response.intermediate_steps
         let executedCypher = ""
+        let cypherResult = ""
         if (Array.isArray(intermediate_steps) && intermediate_steps.length) {
             executedCypher = intermediate_steps[0].query
+            cypherResult = intermediate_steps[1].context
         }
 
         setUser({
@@ -42,7 +45,8 @@ export default function ChatView({ sx = {} }: { sx?: SxProps }) {
                     text: res.response.result,
                     createdAt: Date.now(),
                     _id: Date.now() + 1,
-                    executedCypher: executedCypher,
+                    executedCypher,
+                    cypherResult
                 }
             ]
         })
@@ -62,8 +66,9 @@ export default function ChatView({ sx = {} }: { sx?: SxProps }) {
             display: "flex",
             flexDirection: "column",
             gap: 1,
+            overflowY: "auto",
         }}>
-            {user.messages.sort(sortMessagesReverse).map(message => <MessageBubble key={message._id} {...message} />)}
+            {user.messages.sort(sortMessages).map(message => <MessageBubble key={message._id} {...message} />)}
         </Box>
         <TextField
             InputProps={{
@@ -82,6 +87,7 @@ export default function ChatView({ sx = {} }: { sx?: SxProps }) {
             }}
             value={text}
             onChange={e => setText(e.target.value)}
+            onKeyDown={e => e.key === "Enter" && handleSubmit()}
         />
         <Typography variant="caption" sx={{ alignSelf: "center" }}>
             AI can make mistakes. Check important information.

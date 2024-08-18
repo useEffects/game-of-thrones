@@ -23,13 +23,8 @@ function Flow({ strength = -1000, distance = 150, query = "" }: FlowProps = {}) 
     const [nodes, setNodes, onNodesChange] = useNodesState([]);
     const [edges, setEdges, onEdgesChange] = useEdgesState([]);
 
-    console.log({ query })
-
     useEffect(() => {
-        if (query) {
-            console.log(query)
-            setNodesAndEdges(setNodes, setEdges, query);
-        }
+        query && setNodesAndEdges(setNodes, setEdges, query);
     }, [query])
 
     useForceLayout({ strength, distance });
@@ -59,8 +54,8 @@ function Flow({ strength = -1000, distance = 150, query = "" }: FlowProps = {}) 
             nodeOrigin={nodeOrigin}
             onNodeClick={onNodeClick}
             defaultViewport={{
-                x: typeof window !== 'undefined' ? window.innerWidth / 2 : 0,
-                y: typeof window !== 'undefined' ? window.innerHeight / 2 : 0,
+                x: typeof window !== 'undefined' ? window.innerWidth * (1 / 4) : 0,
+                y: typeof window !== 'undefined' ? window.innerHeight * (1 / 4) : 0,
                 zoom: 0,
             }}
         >
