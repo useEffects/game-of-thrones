@@ -1177,6 +1177,11 @@
     "@types/react" "*"
     hoist-non-react-statics "^3.3.0"
 
+"@types/javascript-time-ago@^2.0.8":
+  version "2.0.8"
+  resolved "https://registry.yarnpkg.com/@types/javascript-time-ago/-/javascript-time-ago-2.0.8.tgz#e778029ce2e348edfec8671f557a0e892878d2cb"
+  integrity sha512-X77q3xUzWVn0qohgurKE1G5NiXZjee8VbLqaukW/HXVkz7bdCFJgOPQ3JVB4IkrDhMS4CviFTmpZuNVg0i2QFA==
+
 "@types/lodash@^4.17.7":
   version "4.17.7"
   resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.17.7.tgz#2f776bcb53adc9e13b2c0dfd493dfcbd7de43612"
