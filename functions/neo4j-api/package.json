@@ -1,4 +1,5 @@
 {
+  "name": "neo4j-api",
   "engines": {
       "node": "18.x"
   }
