@@ -38,8 +38,8 @@ def get_chain(api_key):
 
 class handler(BaseHTTPRequestHandler):
     def do_OPTIONS(self):
-        self.add_cors_headers()
         self.send_response(200)
+        self.add_cors_headers()
         self.end_headers()
 
     def do_GET(self):
@@ -58,10 +58,11 @@ class handler(BaseHTTPRequestHandler):
         chain = get_chain(api_key)
         response = chain.invoke(input)
         self.send_response(200)
-        self.send_header("Content-type", "application/json")
         self.add_cors_headers()
+        self.send_header("Content-type", "application/json")
         self.end_headers()
         self.wfile.write(json.dumps({"response": response}).encode("utf-8"))
+
 
     def add_cors_headers(self):
         self.send_header("Access-Control-Allow-Origin", "*")
