@@ -1,5 +1,9 @@
 {
-    "paths": {
-        "ui/*": ["../packages/ui/*"],
-    }
+    "compilerOptions": {
+        "paths": {
+            "ui/*": [
+                "../packages/ui/*"
+            ],
+        }
+    },
 }
