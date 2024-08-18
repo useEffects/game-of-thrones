@@ -1,4 +1,4 @@
-import { Dispatch, ReactNode, SetStateAction, createContext } from "react";
+import { Dispatch, ReactNode, SetStateAction, createContext, useState } from "react";
 import { IMessage } from "src/components/message-bubble";
 import useLocalStorageState from "use-local-storage-state";
 
@@ -11,12 +11,10 @@ export const UserContext = createContext<{
 })
 
 export const UserProvider = ({ children }: { children: ReactNode }) => {
-    const [user, setUser] = useLocalStorageState<User>('user', {
-        defaultValue: {
-            name: 'Guest User',
-            openAIKey: import.meta.env.API_KEY!,
-            messages: [],
-        }
+    const [user, setUser] = useState<User>({
+        name: 'Guest User',
+        openAIKey: import.meta.env.API_KEY!,
+        messages: [],
     })
 
     return <UserContext.Provider value={{ user, setUser }}>
