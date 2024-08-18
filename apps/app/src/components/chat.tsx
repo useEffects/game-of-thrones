@@ -68,7 +68,7 @@ export default function ChatView({ sx = {} }: { sx?: SxProps }) {
             gap: 1,
             overflowY: "auto",
         }}>
-            {user.messages.sort(sortMessages).map(message => <MessageBubble key={message._id} {...message} />)}
+            {user.messages.map(message => <MessageBubble key={message._id} {...message} />)}
         </Box>
         <TextField
             InputProps={{

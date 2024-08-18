@@ -13,8 +13,8 @@ export const UserContext = createContext<{
 export const UserProvider = ({ children }: { children: ReactNode }) => {
     const [user, setUser] = useLocalStorageState<User>('user', {
         defaultValue: {
-            name: '',
-            openAIKey: '',
+            name: 'Guest User',
+            openAIKey: import.meta.env.API_KEY!,
             messages: [],
         }
     })
