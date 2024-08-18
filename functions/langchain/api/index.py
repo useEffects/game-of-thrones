@@ -5,8 +5,8 @@ from chain import get_chain
 
 class handler(BaseHTTPRequestHandler):
     def do_OPTIONS(self):
-        self.send_response(200)
         self.add_cors_headers()
+        self.send_response(200)
         self.end_headers()
 
     def do_GET(self):
