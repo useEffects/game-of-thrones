@@ -78,7 +78,7 @@ type Neo4jRelationship = {
 }
 
 const setNodesAndEdges = (nodesDispatcher: Dispatch<SetStateAction<Node[]>>, edgesDispatcher: Dispatch<SetStateAction<Edge[]>>, query: string) => {
-    fetch(neo4jApi, {
+    fetch(`${neo4jApi}/api`, {
         method: 'POST',
         body: JSON.stringify({ query }),
     }).then((res) => res.json()).then((res: {

@@ -14,7 +14,7 @@ export default function ChatView({ sx = {} }: { sx?: SxProps }) {
 
     const handleSubmit = async () => {
         if (!text) return;
-        const res = await fetch(`${langchainServer}`, {
+        const res = await fetch(`${langchainServer}/api`, {
             method: "POST",
             body: JSON.stringify({
                 input: text,
